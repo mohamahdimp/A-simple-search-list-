@@ -9,7 +9,7 @@ import AddedUsers from "./AddedUsers";
 class App extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       employees: [
         {
@@ -94,23 +94,38 @@ class App extends React.Component {
         },
       ],
       inputValue: "",
+      groupName: "",
+      userGroup: {
+        groupNamee: this.groupName,
+        groupMembers: [],
+      },
     };
   }
-  handleDiscard(e){
-    e.preventDefault()
-    let {employees} = this.state;
-    employees.map(x=>x.isAded=false)
+  handleCreate(e) {
+    e.preventDefault();
+
+    let { employees } = this.state;
+    let item = employees.filter((item) => item.isAded === true);
+    this.setState({
+      groupMembers: item,
+      groupName: e.target.value,
+    });
+    console.log(this.state);
+  }
+  handleDiscard(e) {
+    e.preventDefault();
+    let { employees } = this.state;
+    employees.map((x) => (x.isAded = false));
     this.setState({
       ...employees,
-      inputValue:""
-    })
+      inputValue: "",
+    });
   }
   toogleUsers(id) {
     let { employees } = this.state;
     let item = employees.find((item) => item.id === id);
     item.isAded = !item.isAded;
     this.setState({
-      // ...employees,
       item,
     });
   }
@@ -139,6 +154,8 @@ class App extends React.Component {
                   className="form-control form-control-lg mb-3"
                   type="text"
                   placeholder="Design team"
+                  value={this.state.groupName}
+                  onChange={this.handleCreate.bind(this)}
                 />
               </fieldset>
 
@@ -193,8 +210,17 @@ class App extends React.Component {
                   />
                 ))}
             <div className="float-right mb-3">
-              <button className="btn btn-outline-primary" onClick={this.handleDiscard.bind(this)}>Discard</button>
-              <button className="btn btn-primary ml-2" disabled={AddedEmp.length < 1}>
+              <button
+                className="btn btn-outline-primary"
+                onClick={this.handleDiscard.bind(this)}
+              >
+                Discard
+              </button>
+              <button
+                className="btn btn-primary ml-2"
+                onClick={this.handleCreate.bind(this)}
+                disabled={AddedEmp.length < 1}
+              >
                 Create
               </button>
             </div>

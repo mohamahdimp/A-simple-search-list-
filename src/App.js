@@ -96,15 +96,21 @@ class App extends React.Component {
       inputValue: "",
     };
   }
-  handleDiscard(){
-    
+  handleDiscard(e){
+    e.preventDefault()
+    let {employees} = this.state;
+    employees.map(x=>x.isAded=false)
+    this.setState({
+      ...employees,
+      inputValue:""
+    })
   }
   toogleUsers(id) {
     let { employees } = this.state;
     let item = employees.find((item) => item.id === id);
     item.isAded = !item.isAded;
     this.setState({
-      ...employees,
+      // ...employees,
       item,
     });
   }
@@ -148,6 +154,7 @@ class App extends React.Component {
                       key={item.id}
                       img={item.img}
                       name={item.name}
+                      toggleUser={this.toogleUsers.bind(this)}
                     />
                   ))
                 )}
@@ -185,8 +192,8 @@ class App extends React.Component {
                     toggleUser={this.toogleUsers.bind(this)}
                   />
                 ))}
-            <div className="float-right mb-3" onClick={this.handleDiscard.bind(this)}>
-              <button className="btn btn-outline-primary">Discard</button>
+            <div className="float-right mb-3">
+              <button className="btn btn-outline-primary" onClick={this.handleDiscard.bind(this)}>Discard</button>
               <button className="btn btn-primary ml-2" disabled={AddedEmp.length < 1}>
                 Create
               </button>

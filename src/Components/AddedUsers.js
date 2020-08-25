@@ -19,11 +19,12 @@ class AddedUsers extends Component {
       </div>
     );
   }
-  
 }
-const mapDispatchToProps = (dispatch)=>{
-  return {toggleUsers : (id)=>dispatch({type:"TOGGLE_USERS",payload:id})};
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleUsers: (id) => dispatch({ type: "TOGGLE_USERS", payload: id }),
+  };
+};
 const mapStateToProps = () => {
   return {};
 };

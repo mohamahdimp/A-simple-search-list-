@@ -110,11 +110,11 @@ export const reducer = (state = initialState, action) => {
 
     case "HANDLE_DISCARD":
       payload.preventDefault();
-      let empemp = employees.map((x) =>{
-          let newX = {...x}
-         newX.isAded = false 
-          return newX
-        });
+      let empemp = employees.map((x) => {
+        let newX = { ...x };
+        newX.isAded = false;
+        return newX;
+      });
       newState.employees = empemp;
 
       break;

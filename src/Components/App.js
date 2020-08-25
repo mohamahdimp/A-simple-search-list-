@@ -46,17 +46,14 @@ class App extends React.Component {
   //   // Typical usage (don't forget to compare props):
   //   if (this.props.employees !== prevProps.employees) {
   //     this.fetchData(this.props.userID);
-    
+
   //   }
   // }
-
-  
-  
 
   render() {
     let { employees } = this.props;
     let AddedEmp = employees.filter((item) => item.isAded === true);
-   console.log(employees) 
+    console.log(employees);
     let searchedUsers = employees.filter((item) => {
       return item.name
         .toLowerCase()

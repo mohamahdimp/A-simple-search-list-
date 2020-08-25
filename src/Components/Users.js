@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 class Users extends React.Component {
   render() {
@@ -50,13 +50,13 @@ class Users extends React.Component {
     );
   }
 }
-const mapDispatchToProps = (dispatch)=>{
-  return {toggleUsers : (id)=>dispatch({type:"TOGGLE_USERS",payload:id})};
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleUsers: (id) => dispatch({ type: "TOGGLE_USERS", payload: id }),
+  };
+};
 const mapStateToProps = () => {
   return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
-
-

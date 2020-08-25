@@ -1,6 +1,5 @@
 import React from "react";
-import AddIcon from "./AddIcon";
-import NotAddIcon from "./NotAddIcon";
+import {connect} from 'react-redux'
 
 class Users extends React.Component {
   render() {
@@ -26,14 +25,22 @@ class Users extends React.Component {
             </div>
             <div className="col-md-3 col-sm-3">
               <button
-                onClick={() => this.props.toggleUser(this.props.item.id)}
+                onClick={() => this.props.toggleUsers(this.props.item.id)}
                 type="button"
                 className={`badge badge-pill pull-right p-2 ${
                   this.props.item.isAded ? "badge-success" : "badge-primary"
                 }`}
               >
                 <span>
-                  {this.props.item.isAded ? <NotAddIcon /> : <AddIcon />}
+                  {this.props.item.isAded ? (
+                    <div>
+                      <i className="fas fa-check mr-2"></i>Added
+                    </div>
+                  ) : (
+                    <div>
+                      <i className="fas fa-user-plus mr-2"></i>Add
+                    </div>
+                  )}
                 </span>
               </button>
             </div>
@@ -43,5 +50,13 @@ class Users extends React.Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch)=>{
+  return {toggleUsers : (id)=>dispatch({type:"TOGGLE_USERS",payload:id})};
+}
+const mapStateToProps = () => {
+  return {};
+};
 
-export default Users;
+export default connect(mapStateToProps, mapDispatchToProps)(Users);
+
+
